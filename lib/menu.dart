@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiny_chef_mart/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -13,16 +14,13 @@ class MyHomePage extends StatelessWidget {
          ItemHomepage("Logout", Icons.logout),
     ];
     final List<Color> cardColors = [
-      Colors.teal,
-      Colors.blue,
-      Colors.red,
-      Colors.green,
-      Colors.orange,
-      Colors.purple,
+      Color(0xFF8b6c5c), // Light Brown
+      Color(0xFF6a4a3a), // Medium brown
+      Color(0xFF3D251E), // Dark brown
     ];
 
 
-    @override
+  @override
   Widget build(BuildContext context) {
     // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
@@ -38,7 +36,11 @@ class MyHomePage extends StatelessWidget {
         ),
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      // Masukkan drawer sebagai parameter nilai drawer dari widget Scaffold
+      drawer: const LeftDrawer(),
+
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -164,6 +166,10 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
               SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
             );
+            if (item.name == "Tambah Produk") {
+              Navigator.pushNamed(context, 'product-entry');
+
+            }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(

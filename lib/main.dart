@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiny_chef_mart/menu.dart';
+import 'package:tiny_chef_mart/productentry_form.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,6 +34,11 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.brown,
           ).copyWith(secondary: Colors.brown[400]),
       ),
+      initialRoute: '/',
+      routes: {
+        '': (context) => MyHomePage(), // Halaman utama aplikasi
+        'product-entry': (context) => ProductEntryFormPage(), // Rute ke halaman MoodEntryFormPage
+      },
       home: MyHomePage(),
     );
   }
