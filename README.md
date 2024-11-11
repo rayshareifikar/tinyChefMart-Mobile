@@ -79,8 +79,91 @@ samples, guidance on mobile development, and a full API reference.
                                                     Tugas 8
 --------------------------------------------------------------------------------------------------------------------
 1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
-
+    - Const digunakan untuk menandai nilai atau widget yang bersifat immutable (tidak bisa diubah) pada waktu kompilasi. Nilai atau widget yang ditandai dengan const akan tetap sama dan hanya dihitung atau dibuat sekali saja saat kompilasi.
+    
+    - keuntungan menggunakan const:
+        - Efisiensi Memori:
+            - Dengan menggunakan const, Flutter akan menyimpan satu instance dari objek atau widget tersebut yang dapat digunakan kembali di berbagai tempat tanpa perlu membuat ulang objek yang sama sehingga membantu mengurangi konsumsi memori.
+        - Optimalisasi Performa:
+            - Objek atau widget const hanya perlu di-render sekali sehingga mengurangi beban kerja pada runtime. Hal ini meningkatkan performa aplikasi, terutama untuk aplikasi yang memiliki struktur widget kompleks atau banyak elemen statis.
+        - Pencegahan error:
+            - const memastikan bahwa suatu nilai tidak akan berubah sehingga dapat mencegah perubahan yang tidak disengaja. Hal ini membuat kode lebih aman dan meminimalisasi resiko bug akibat perubahan data secara tidak sengaja.
+    
+    - Kapan sebaiknya menggunakan const:
+        - Widget yang bersifat statis atau tidak berubah
+        - Mendefinisikan data konstan yang digunakan di seluruh aplikasi
+    
+    - Kapan sebaiknya tidak menggunakan const:
+        - Widget atau objek yang bisa berubah atau sering diperbarui. 
+        - Membutuhkan perhitungan ulang selama aplikasi berjalan
+    
 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+    - Column:
+        - Column digunakan untuk menempatkan elemen-elemen dalam susunan vertikal
+        - mainAxisAlignment: Mengatur posisi elemen secara vertikal
+        - crossAxisAlignment: Mengatur posisi elemen secara horizontal
+        - Implementasi:
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center, // Pusatkan elemen secara vertikal
+                crossAxisAlignment: CrossAxisAlignment.start, // Mulai dari kiri secara horizontal
+                children: [
+                    Text('Elemen 1'),
+                    Text('Elemen 2'),
+                    ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Tombol'),
+                    ),
+                ],
+            )
+
+    - Row:
+        - Row digunakan untuk menempatkan elemen-elemen dalam susunan horizontal
+        - mainAxisAlignment: Mengatur posisi elemen secara horizontal
+        - crossAxisAlignment: Mengatur posisi elemen secara vertikal
+        - Implementasi:
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround, // Sebar elemen secara merata
+                crossAxisAlignment: CrossAxisAlignment.center, // Pusatkan elemen secara vertikal
+                children: [
+                    Icon(Icons.star),
+                    Text('Rating: 5'),
+                    ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Lihat Detail'),
+                    ),
+                ],
+            )
+
 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+    - Digunakan:
+        - TextFormField: Untuk input nama produk, deskripsi, harga, kuantitas
+        - ElevatedButton: Untuk tombol yang menyimpan data
+
+    - Tidak digunakan:
+        - Checkbox: Untuk opsi pilihan ya atau tidak
+        - Radio: Untuk pilihan tunggal dari beberapa opsi
+        - DropdownButton: Untuk pilihan dari daftar opsi yang lebih panjang. 
+
 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+    - Menggunakan ThemeData di MaterialApp di main.dart. Dengan ThemeData, tema dapat diatur secara global sehingga temanya konsisten. 
+    MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+         colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.brown,
+          ).copyWith(secondary: Colors.brown[400]),
+      ),
+
 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+    - Menggunakan navigator.pop untuk kembali ke halaman sebelumnya 
+        onPressed: () {
+            Navigator.pop(context);
+            _formKey.currentState!.reset();
+        },
+    - Menggunakan named routes 
+        initialRoute: '/',
+      routes: {
+        '': (context) => MyHomePage(), // Halaman utama aplikasi
+        'product-entry': (context) => ProductEntryFormPage(), // Rute ke halaman MoodEntryFormPage
+      }, 
+    - Menggunakan drawer di page left_drawer.dart
