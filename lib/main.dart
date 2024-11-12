@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiny_chef_mart/menu.dart';
-import 'package:tiny_chef_mart/productentry_form.dart';
+import 'package:tiny_chef_mart/screens/menu.dart';
+import 'package:tiny_chef_mart/screens/productentry_form.dart';
 
 void main() {
   runApp(const MyApp());
