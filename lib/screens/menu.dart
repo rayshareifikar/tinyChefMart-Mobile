@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tiny_chef_mart/widgets/left_drawer.dart';
 import 'package:tiny_chef_mart/widgets/product_card.dart';
 
@@ -28,9 +29,9 @@ class MyHomePage extends StatelessWidget {
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
         // Judul aplikasi "Mental Health Tracker" dengan teks putih dan tebal.
-        title: const Text(
+        title: Text(
           'Tiny Chef Mart',
-          style: TextStyle(
+          style: GoogleFonts.vollkorn(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
